@@ -133,6 +133,7 @@ dmypy.json
 
 .history/
 
-dating/media/
+dating/media/*
+!dating/media/watermark/
 
 api_requests.http
