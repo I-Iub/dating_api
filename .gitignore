@@ -137,3 +137,5 @@ dating/media/*
 !dating/media/watermark/
 
 api_requests.http
+
+sent_emails/

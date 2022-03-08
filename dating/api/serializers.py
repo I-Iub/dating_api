@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 
 from api.fields import Base64ToImageField
-from users.models import User
+from users.models import Match, User
 
 
 class EmailPasswordSerializer(serializers.Serializer):
@@ -37,3 +37,9 @@ class SignupSerializer(serializers.ModelSerializer):
             'email',
             'password'
         )
+
+
+class MatchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Match
+        fields = ('user', 'candidate', 'like')

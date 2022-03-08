@@ -2,6 +2,7 @@ import io
 import os
 
 from django.conf import settings
+from django.core.mail import send_mail
 from PIL import Image
 from PIL import ImageEnhance
 
@@ -29,3 +30,10 @@ def watermark(source):
     buffer = io.BytesIO()
     watermark_image.save(buffer, format='PNG')
     return buffer.getvalue()
+
+
+def send_email(name, email):
+    subject = 'Dating'
+    message = (f'Вы понравились {name}!'
+               f'Почта участника: {email}')
+    return send_mail(subject, message, settings.ADMIN_EMAIL, [email])
