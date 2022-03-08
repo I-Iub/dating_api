@@ -1,9 +1,12 @@
 from django.shortcuts import get_object_or_404
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.filters import SearchFilter
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from rest_framework.viewsets import ReadOnlyModelViewSet
 
 from api.serializers import (EmailPasswordSerializer, MatchSerializer,
                              SignupSerializer)
@@ -68,3 +71,11 @@ def matching(request, client_id):
             send_email(user.first_name, candidate.email)
             send_email(candidate.first_name, user.email)
     return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class UserReadOnlyViewSet(ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = SignupSerializer
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    filterset_fields = ('gender', 'first_name', 'last_name')
+    search_fields = ('^first_name', '^last_name')
