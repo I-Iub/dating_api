@@ -1,3 +1,5 @@
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.password_validation import validate_password
 from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 
@@ -26,6 +28,7 @@ class EmailPasswordSerializer(serializers.Serializer):
 
 class SignupSerializer(serializers.ModelSerializer):
     avatar = Base64ToImageField()
+    password = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
@@ -37,6 +40,16 @@ class SignupSerializer(serializers.ModelSerializer):
             'email',
             'password'
         )
+
+    def validate_password(self, value):
+        validate_password(value)
+        return value
+
+    def create(self, validated_data):
+        validated_data['password'] = make_password(
+            validated_data.get('password')
+        )
+        return super().create(validated_data)
 
 
 class MatchSerializer(serializers.ModelSerializer):
