@@ -1,0 +1,70 @@
+###
+POST http://hero-dating.herokuapp.com/api/clients/create/
+Content-Type: application/json
+
+{
+    "avatar": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAHCAYAAAArkDztAAAABHNCSVQICAgIfAhkiAAAABl0RVh0U29mdHdhcmUAZ25vbWUtc2NyZWVuc2hvdO8Dvz4AAACvSURBVAiZBcFNC8FgAMDx/x5rYgdLKYsDpSTJ3cHVR3D2LXwddw6+gCSphSPlbRK5PHmb1zUbv5/y7jV/o3afRKqCcpOEfYfBbI3qyA+ZpEYgl7ykz8L7UKzWEMP+mFi2hKrrXK4P4vkc6VIBEVUE2/kOVxNYhontBniBQNgnn/HKwT4caVkTOtMNbz2OKgjhqgqhiEmjDNrzidXtIi77E/J8RUbv1ItfTCOBZ6T5AzGARe11+FifAAAAAElFTkSuQmCC",
+    "gender": "Female",
+    "first_name": "user11",
+    "last_name": "Ростов-на-Дону",
+    "email": "11@mail.ru",
+    "latitude": "47.246188",
+    "longitude": "39.698406",
+    "password": "gjdfeow45232sf2h"
+}
+
+###
+POST http://hero-dating.herokuapp.com/api/clients/login/
+Content-Type: application/json
+
+{
+    "email": "app@trix.ru",
+    "password": "qwerasd345"
+}
+
+###
+POST http://hero-dating.herokuapp.com/api/clients/logout/
+Authorization: Token 4ba564d3cfbc6d6575e2b8b988f3d7e41d780334
+
+
+###
+POST http://hero-dating.herokuapp.com/api/clients/2/match/
+Authorization: Token 4ba564d3cfbc6d6575e2b8b988f3d7e41d780334
+Content-Type: application/json
+
+{
+    "like": "true"
+}
+
+###
+PATCH http://hero-dating.herokuapp.com/api/clients/2/match/
+Authorization: Token 4ba564d3cfbc6d6575e2b8b988f3d7e41d780334
+Content-Type: application/json
+
+{
+    "like": "false"
+}
+
+###
+GET http://hero-dating.herokuapp.com/api/list/
+Authorization: Token 4ba564d3cfbc6d6575e2b8b988f3d7e41d780334
+
+###
+GET http://hero-dating.herokuapp.com/api/list/?gender=Female
+Authorization: Token 4ba564d3cfbc6d6575e2b8b988f3d7e41d780334
+
+###
+GET http://hero-dating.herokuapp.com/api/list/?gender=Female&last_name=Москва
+Authorization: Token 4ba564d3cfbc6d6575e2b8b988f3d7e41d780334
+
+###
+GET http://hero-dating.herokuapp.com/api/list/?first_name=user10
+Authorization: Token 4ba564d3cfbc6d6575e2b8b988f3d7e41d780334
+
+###
+GET http://hero-dating.herokuapp.com/api/list/?gender=Female&search=use
+Authorization: Token 4ba564d3cfbc6d6575e2b8b988f3d7e41d780334
+
+###
+GET http://hero-dating.herokuapp.com/api/list/?gender=Female&distance=59
+Authorization: Token 4ba564d3cfbc6d6575e2b8b988f3d7e41d780334

@@ -133,9 +133,10 @@ dmypy.json
 
 .history/
 
+dating/staticfiles/*
 dating/media/*
 !dating/media/watermark/
 
-api_requests.http
+!api_requests.http
 
 sent_emails/

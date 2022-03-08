@@ -1,0 +1,1 @@
+web: gunicorn --chdir dating dating.wsgi

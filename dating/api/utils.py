@@ -37,3 +37,11 @@ def send_email(name, email):
     message = (f'Вы понравились {name}!'
                f'Почта участника: {email}')
     return send_mail(subject, message, settings.ADMIN_EMAIL, [email])
+
+
+def get_integer_type(value):
+    try:
+        value = int(value)
+        return value
+    except ValueError:
+        return

@@ -6,6 +6,11 @@ from rest_framework import serializers
 from api.fields import Base64ToImageField
 from users.models import Match, User
 
+LATITUDE_MIN = -90
+LATITUDE_MAX = 90
+LONGITUDE_MIN = -180
+LONGITUDE_MAX = 180
+
 
 class EmailPasswordSerializer(serializers.Serializer):
     email = serializers.EmailField(max_length=254)
@@ -38,11 +43,27 @@ class SignupSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'email',
-            'password'
+            'password',
+            'latitude',
+            'longitude'
         )
 
     def validate_password(self, value):
         validate_password(value)
+        return value
+
+    def validate_latitude(self, value):
+        if value < LATITUDE_MIN or value > LATITUDE_MAX:
+            raise serializers.ValidationError({
+                'email': 'Укажите широту в диапазоне -90...90 градусов.'
+            })
+        return value
+
+    def validate_longitude(self, value):
+        if value < LONGITUDE_MIN or value > LONGITUDE_MAX:
+            raise serializers.ValidationError({
+                'email': 'Укажите долготу в диапазоне -180...180 градусов.'
+            })
         return value
 
     def create(self, validated_data):

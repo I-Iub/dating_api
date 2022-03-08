@@ -4,7 +4,15 @@ from users.models import Match, User
 
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'first_name', 'last_name', 'gender', 'email')
+    list_display = (
+        'pk',
+        'first_name',
+        'last_name',
+        'gender',
+        'email',
+        'latitude',
+        'longitude'
+    )
     search_field = ('username', 'email')
     list_filter = ('gender',)
     empty_value_display = '<пусто>'
